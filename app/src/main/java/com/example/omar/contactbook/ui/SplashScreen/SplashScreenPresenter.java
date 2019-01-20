@@ -18,6 +18,10 @@ public class SplashScreenPresenter {
         mvpView.ShowMessage("Hello CallBack");
     }
 
+    /**
+     * this method will be invoked in onCreate method for loading animation
+     * @param context
+     */
     public void actionLoadAnimation(Context context){
         Animation animSliderInTop,animSliderInBottom;
 

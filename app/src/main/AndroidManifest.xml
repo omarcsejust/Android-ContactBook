@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.Category.CategoryActivity" />
-        <activity android:name=".ui.Login.LoginActivity"></activity>
+        <activity android:name=".ui.Login.LoginActivity" />
+        <activity android:name=".ui.OnBoarding.OnBoardingActivity" />
+        <activity android:name=".ui.MainMenu.MainMenuActivity"></activity>
     </application>
 
 </manifest>
