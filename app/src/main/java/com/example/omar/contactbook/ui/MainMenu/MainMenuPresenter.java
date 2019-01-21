@@ -4,13 +4,11 @@ import android.content.Context;
 
 import com.example.omar.contactbook.data.Database.AppDatabase;
 import com.example.omar.contactbook.data.Models.Category;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainMenuPresenter {
-    MainMenuMvpView mvpView;
-    AppDatabase appDatabase;
+    private MainMenuMvpView mvpView;
+    private AppDatabase appDatabase;
 
     public MainMenuPresenter(MainMenuMvpView mainMenuMvpView,Context context){
         this.mvpView = mainMenuMvpView;

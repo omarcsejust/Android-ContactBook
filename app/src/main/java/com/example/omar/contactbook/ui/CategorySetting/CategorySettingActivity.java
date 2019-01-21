@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.omar.contactbook.R;
 import com.example.omar.contactbook.data.Models.Category;
-
 import java.util.List;
 
 public class CategorySettingActivity extends AppCompatActivity implements CategorySettingMvpView{
@@ -15,7 +14,6 @@ public class CategorySettingActivity extends AppCompatActivity implements Catego
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-    //List<Category> categories;  // Country is a Pojo (Model) Class
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

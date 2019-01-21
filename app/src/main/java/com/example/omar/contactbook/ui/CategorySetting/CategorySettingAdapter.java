@@ -1,16 +1,12 @@
 package com.example.omar.contactbook.ui.CategorySetting;
-
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.omar.contactbook.R;
 import com.example.omar.contactbook.data.Models.Category;
-
 import java.util.List;
 
 public class CategorySettingAdapter extends RecyclerView.Adapter<CategorySettingAdapter.RecyclerViewHolder> {
