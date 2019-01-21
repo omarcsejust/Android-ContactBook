@@ -1,5 +1,6 @@
 package com.example.omar.contactbook.ui.MainMenu;
 
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,12 +11,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.omar.contactbook.R;
+import com.example.omar.contactbook.data.Database.AppDatabase;
+import com.example.omar.contactbook.data.Models.Category;
+import com.example.omar.contactbook.ui.CategorySetting.CategorySettingActivity;
 
-public class MainMenuActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
-    CardView cardViewCreateGroup;
+public class MainMenuActivity extends AppCompatActivity implements MainMenuMvpView{
+
+    CardView cardViewCreateGroup, cardViewSettingGroup;
     EditText editTextGetGroupName;
-    Button buttonAddGroupName, buttonExitAddGroupDialog;
+    Button buttonAddGroupName, buttonExitAddGroupDialog, buttonTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +30,14 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         cardViewCreateGroup = findViewById(R.id.cv_create_group);
+        cardViewSettingGroup = findViewById(R.id.cv_setting_groups);
 
+        final MainMenuPresenter presenter = new MainMenuPresenter(this,MainMenuActivity.this);
+
+        /**
+         * Add New Group Menu
+         * implementing custom alert dialog for creating new group
+         */
         cardViewCreateGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,8 +56,12 @@ public class MainMenuActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         String groupName = editTextGetGroupName.getText().toString();
                         if (!groupName.isEmpty()){
+                            Category category = new Category();
+                            category.setCatName(groupName);
+                            presenter.actionAddCategory(category);
                             Toast.makeText(MainMenuActivity.this,groupName,Toast.LENGTH_SHORT).show();
                         }else {
+                            //presenter.actionGetAllCategory();
                             Toast.makeText(MainMenuActivity.this,"Please Input a Group Name!",Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -52,11 +70,39 @@ public class MainMenuActivity extends AppCompatActivity {
                 buttonExitAddGroupDialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        dialog.dismiss();
+                        presenter.actionGetAllCategory();
+                        //dialog.dismiss();
                     }
                 });
 
             }
         });
+
+        /**
+         * Setting Group Menu
+         * invoking category setting activity
+         */
+        cardViewSettingGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenuActivity.this,CategorySettingActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public void addCategory(String message) {
+        Toast.makeText(MainMenuActivity.this,message,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void getAllCategory(List<Category> categories) {
+        for (int i=0;i<categories.size();i++){
+            Category category = categories.get(i);
+            Toast.makeText(MainMenuActivity.this,category.getCatName(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainMenuActivity.this,Integer.toString(category.getId()),Toast.LENGTH_SHORT).show();
+        }
+        Toast.makeText(MainMenuActivity.this,"Size"+categories.size(),Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,11 +1,18 @@
 package com.example.omar.contactbook.data.Database;
 
+import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.example.omar.contactbook.data.DAO.CategoryDAO;
+import com.example.omar.contactbook.data.Models.Category;
+
+@Database(entities = {Category.class},version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
+
+    public abstract CategoryDAO categoryDAO();
 
     public static AppDatabase getAppDatabase(Context context) {
         if (INSTANCE == null) {
