@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.omar.contactbook.R;
 import com.example.omar.contactbook.data.Database.AppDatabase;
 import com.example.omar.contactbook.data.Models.Category;
+import com.example.omar.contactbook.ui.Category.CategoryActivity;
 import com.example.omar.contactbook.ui.CategorySetting.CategorySettingActivity;
 
 import java.util.ArrayList;
@@ -20,9 +21,9 @@ import java.util.List;
 
 public class MainMenuActivity extends AppCompatActivity implements MainMenuMvpView{
 
-    CardView cardViewCreateGroup, cardViewSettingGroup;
+    CardView cardViewCreateGroup, cardViewSettingGroup, cardViewGroups;
     EditText editTextGetGroupName;
-    Button buttonAddGroupName, buttonExitAddGroupDialog, buttonTest;
+    Button buttonAddGroupName, buttonExitAddGroupDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuMvpVi
 
         cardViewCreateGroup = findViewById(R.id.cv_create_group);
         cardViewSettingGroup = findViewById(R.id.cv_setting_groups);
+        cardViewGroups = findViewById(R.id.cv_view_groups);
 
         final MainMenuPresenter presenter = new MainMenuPresenter(this,MainMenuActivity.this);
 
@@ -75,6 +77,14 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuMvpVi
                     }
                 });
 
+            }
+        });
+
+        cardViewGroups.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenuActivity.this,CategoryActivity.class);
+                startActivity(intent);
             }
         });
 
