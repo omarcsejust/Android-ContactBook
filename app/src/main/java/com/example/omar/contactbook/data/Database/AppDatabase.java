@@ -6,13 +6,16 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.example.omar.contactbook.data.DAO.CategoryDAO;
+import com.example.omar.contactbook.data.DAO.ContactDAO;
 import com.example.omar.contactbook.data.Models.Category;
+import com.example.omar.contactbook.data.Models.Contact;
 
-@Database(entities = {Category.class},version = 1)
+@Database(entities = {Category.class, Contact.class},version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
     public abstract CategoryDAO categoryDAO();
+    public abstract ContactDAO contactDAO();
 
     public static AppDatabase getAppDatabase(Context context) {
         if (INSTANCE == null) {

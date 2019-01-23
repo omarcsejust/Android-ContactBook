@@ -19,21 +19,11 @@ public class Contact {
     @ColumnInfo(name = "email_id")
     private String emailId;
 
+    @ColumnInfo(name = "cat_id")
+    private int categoryId;
+
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Contact(int id, String contactName, String contactNumber, String emailId) {
-        this.id = id;
-        this.contactName = contactName;
-        this.contactNumber = contactNumber;
-        this.emailId = emailId;
-    }
-
-    public Contact(String contactName, String contactNumber, String emailId) {
-        this.contactName = contactName;
-        this.contactNumber = contactNumber;
-        this.emailId = emailId;
     }
 
     public void setContactName(String contactName) {
@@ -62,5 +52,13 @@ public class Contact {
 
     public String getEmailId() {
         return emailId;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 }
