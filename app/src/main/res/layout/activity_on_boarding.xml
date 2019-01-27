@@ -13,4 +13,13 @@
         android:text="Go to main menu"
         />
 
+    <Button
+        android:id="@+id/button_add_contact"
+        android:layout_below="@+id/button_main_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Contact"
+        android:layout_marginTop="10dp"
+        />
+
 </RelativeLayout>

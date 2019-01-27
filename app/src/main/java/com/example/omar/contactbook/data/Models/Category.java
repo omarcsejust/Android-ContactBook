@@ -13,15 +13,6 @@ public class Category {
     @ColumnInfo(name = "cat_name")
     private String catName;
 
-    /*public Category(String catName) {
-        this.catName = catName;
-    }*/
-
-    /*public Category(int id, String catName) {
-        this.id = id;
-        this.catName = catName;
-    }*/
-
     public int getId() {
         return id;
     }

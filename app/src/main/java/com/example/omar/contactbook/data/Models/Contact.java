@@ -22,6 +22,9 @@ public class Contact {
     @ColumnInfo(name = "cat_id")
     private int categoryId;
 
+    @ColumnInfo(name = "gender_id")
+    private int genderId; // 5=male and 3=female
+
     public void setId(int id) {
         this.id = id;
     }
@@ -60,5 +63,13 @@ public class Contact {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public int getGenderId() {
+        return genderId;
+    }
+
+    public void setGenderId(int genderId) {
+        this.genderId = genderId;
     }
 }
