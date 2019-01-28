@@ -2,9 +2,11 @@ package com.example.omar.contactbook.data.Models;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "category")
+@Entity(tableName = "category", indices = {@Index(value = {"cat_name"},
+        unique = true)})
 public class Category {
 
     @PrimaryKey(autoGenerate = true)

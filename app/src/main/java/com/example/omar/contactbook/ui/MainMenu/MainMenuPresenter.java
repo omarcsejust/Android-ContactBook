@@ -17,8 +17,8 @@ public class MainMenuPresenter {
 
 
     public void actionAddCategory(Category category){
-        appDatabase.categoryDAO().addCategory(category);
-        mvpView.addCategory("Group added successfully.");
+        long rowId = appDatabase.categoryDAO().addCategory(category);
+        mvpView.addCategory(rowId, category.getCatName());
     }
 
     public void actionGetAllCategory(){

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.omar.contactbook.R;
 import com.example.omar.contactbook.data.Models.Category;
+import com.example.omar.contactbook.data.Models.Contact;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +22,13 @@ public class AddContactActivity extends AppCompatActivity implements AddContactM
 
     RadioGroup radioGroupGenderSelect;
     Button buttonAddContact;
-    private int genderCode; // 5=male 3=female
     Spinner spinnerGroups;
+    EditText editTextName, editTextEmai, editTextPhoneNumber;
+
+    private String name;
+    private String email;
+    private int genderCode; // 5=male 3=female
+    private String phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +38,22 @@ public class AddContactActivity extends AppCompatActivity implements AddContactM
         radioGroupGenderSelect = findViewById(R.id.radio_group_gender);
         buttonAddContact = findViewById(R.id.button_add_contact);
         spinnerGroups = findViewById(R.id.spinner_groups);
+        editTextName = findViewById(R.id.edit_text_name);
+        editTextEmai = findViewById(R.id.edit_text_email);
+        editTextPhoneNumber = findViewById(R.id.edit_text_number);
 
-        AddContactPresenter presenter = new AddContactPresenter(this,AddContactActivity.this);
+        final AddContactPresenter presenter = new AddContactPresenter(this,AddContactActivity.this);
         presenter.actionGetAllCategories();
 
+        // button click event for adding new contact
         buttonAddContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                name = editTextName.getText().toString();
+                email = editTextEmai.getText().toString();
+                phoneNumber = editTextPhoneNumber.getText().toString();
                 genderCode = getGenderCode();
+                presenter.actionValidateContactInfo(name,phoneNumber,email,genderCode);
                 Toast.makeText(AddContactActivity.this,Integer.toString(genderCode),Toast.LENGTH_SHORT).show();
             }
         });
@@ -73,5 +88,19 @@ public class AddContactActivity extends AppCompatActivity implements AddContactM
 
         // attaching data adapter to spinner
         spinnerGroups.setAdapter(dataAdapter);
+    }
+
+    @Override
+    public void validateContactInfo(String message, boolean isValid) {
+        if (!isValid){
+            Toast.makeText(AddContactActivity.this,message,Toast.LENGTH_SHORT).show();
+        }else {
+            Contact contact = new Contact();
+            contact.setContactName(name);
+            contact.setContactNumber(phoneNumber);
+            contact.setEmailId(email);
+            contact.setGenderId(genderCode);
+
+        }
     }
 }

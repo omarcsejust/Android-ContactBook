@@ -61,7 +61,6 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuMvpVi
                             Category category = new Category();
                             category.setCatName(groupName);
                             presenter.actionAddCategory(category);
-                            Toast.makeText(MainMenuActivity.this,groupName,Toast.LENGTH_SHORT).show();
                         }else {
                             //presenter.actionGetAllCategory();
                             Toast.makeText(MainMenuActivity.this,"Please Input a Group Name!",Toast.LENGTH_SHORT).show();
@@ -102,8 +101,12 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuMvpVi
     }
 
     @Override
-    public void addCategory(String message) {
-        Toast.makeText(MainMenuActivity.this,message,Toast.LENGTH_SHORT).show();
+    public void addCategory(long rowId, String catName) {
+        if (rowId>0){
+            Toast.makeText(MainMenuActivity.this,"Enjoy! Group Created Successfully.",Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(MainMenuActivity.this,"Sorry! It seems "+catName+" already exist!",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
