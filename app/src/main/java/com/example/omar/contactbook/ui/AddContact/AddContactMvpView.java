@@ -7,4 +7,5 @@ import java.util.List;
 public interface AddContactMvpView {
     void getAllGroups(List<Category> categories);
     void validateContactInfo(String message, boolean isValid);
+    void addContact(long id);
 }

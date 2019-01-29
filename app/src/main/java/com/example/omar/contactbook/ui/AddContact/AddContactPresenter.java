@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.omar.contactbook.data.Database.AppDatabase;
 import com.example.omar.contactbook.data.Models.Category;
+import com.example.omar.contactbook.data.Models.Contact;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -28,6 +29,12 @@ public class AddContactPresenter {
         List<Category> categories = appDatabase.categoryDAO().getAllCategory();
         mvpView.getAllGroups(categories);
     }
+
+    public void actionAddContact(Contact contact){
+        long id = appDatabase.contactDAO().addContact(contact);
+        mvpView.addContact(id);
+    }
+
 
     public void actionValidateContactInfo(String name, String phoneNumber, String email, int genderCode){
         if (genderCode == 0){

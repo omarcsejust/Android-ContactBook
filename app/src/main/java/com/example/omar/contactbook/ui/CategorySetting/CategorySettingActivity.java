@@ -27,7 +27,7 @@ public class CategorySettingActivity extends AppCompatActivity implements Catego
 
     @Override
     public void getAllCategory(List<Category> categories) {
-        adapter=new CategorySettingAdapter(CategorySettingActivity.this,categories);  // "this" is a contect of current activity....
+        adapter=new CategorySettingAdapter(CategorySettingActivity.this,categories);  // "this" is a context of current activity....
         layoutManager=new LinearLayoutManager(CategorySettingActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);

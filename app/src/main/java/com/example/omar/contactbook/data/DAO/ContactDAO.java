@@ -12,8 +12,11 @@ import java.util.List;
 public interface ContactDAO {
 
     @Insert
-    void addContact(Contact contact);
+    long addContact(Contact contact);
 
     @Query("select * from contact")
     List<Contact> getAllContacts();
+
+    @Query("SELECT * FROM contact WHERE cat_id = :categoryId")
+    List<Contact> getContactsByCategoryId(int categoryId);
 }

@@ -1,6 +1,7 @@
 package com.example.omar.contactbook.ui.Category;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.example.omar.contactbook.R;
 import com.example.omar.contactbook.data.Models.Category;
 import com.example.omar.contactbook.ui.CategorySetting.CategorySettingAdapter;
+import com.example.omar.contactbook.ui.Contact.ContactActivity;
 
 import java.util.List;
 
@@ -31,8 +33,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Recycl
     }
 
     @Override
-    public void onBindViewHolder(CategoryAdapter.RecyclerViewHolder recyclerViewHolder, int position) {
+    public void onBindViewHolder(RecyclerViewHolder recyclerViewHolder, final int position) {
         recyclerViewHolder.textViewGroupName.setText(categories.get(position).getCatName());
+        recyclerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,ContactActivity.class);
+                intent.putExtra("GROUP_ID",categories.get(position).getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -45,6 +55,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Recycl
         public RecyclerViewHolder(View view){
             super(view);
             textViewGroupName=view.findViewById(R.id.tv_group_name);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
     }
 }

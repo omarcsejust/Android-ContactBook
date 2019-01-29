@@ -23,12 +23,14 @@ public class AddContactActivity extends AppCompatActivity implements AddContactM
     RadioGroup radioGroupGenderSelect;
     Button buttonAddContact;
     Spinner spinnerGroups;
-    EditText editTextName, editTextEmai, editTextPhoneNumber;
+    EditText editTextName, editTextEmail, editTextPhoneNumber;
 
     private String name;
     private String email;
     private int genderCode; // 5=male 3=female
     private String phoneNumber;
+    private List<Category> mCategories;
+    AddContactPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,10 @@ public class AddContactActivity extends AppCompatActivity implements AddContactM
         buttonAddContact = findViewById(R.id.button_add_contact);
         spinnerGroups = findViewById(R.id.spinner_groups);
         editTextName = findViewById(R.id.edit_text_name);
-        editTextEmai = findViewById(R.id.edit_text_email);
+        editTextEmail = findViewById(R.id.edit_text_email);
         editTextPhoneNumber = findViewById(R.id.edit_text_number);
 
-        final AddContactPresenter presenter = new AddContactPresenter(this,AddContactActivity.this);
+        presenter = new AddContactPresenter(this,AddContactActivity.this);
         presenter.actionGetAllCategories();
 
         // button click event for adding new contact
@@ -50,7 +52,7 @@ public class AddContactActivity extends AppCompatActivity implements AddContactM
             @Override
             public void onClick(View v) {
                 name = editTextName.getText().toString();
-                email = editTextEmai.getText().toString();
+                email = editTextEmail.getText().toString();
                 phoneNumber = editTextPhoneNumber.getText().toString();
                 genderCode = getGenderCode();
                 presenter.actionValidateContactInfo(name,phoneNumber,email,genderCode);
@@ -76,6 +78,7 @@ public class AddContactActivity extends AppCompatActivity implements AddContactM
     @Override
     public void getAllGroups(List<Category> categories) {
         ArrayList<String> category = new ArrayList<>();
+        this.mCategories = categories;
         for (int i=0; i<categories.size(); i++){
             String cat_name = categories.get(i).getCatName();
             category.add(cat_name);
@@ -95,12 +98,32 @@ public class AddContactActivity extends AppCompatActivity implements AddContactM
         if (!isValid){
             Toast.makeText(AddContactActivity.this,message,Toast.LENGTH_SHORT).show();
         }else {
+            int groupId = 0;
             Contact contact = new Contact();
             contact.setContactName(name);
             contact.setContactNumber(phoneNumber);
             contact.setEmailId(email);
             contact.setGenderId(genderCode);
 
+            String group = spinnerGroups.getSelectedItem().toString();
+
+            for (int i=0; i<mCategories.size(); i++){
+                if (mCategories.get(i).getCatName().equals(group)){
+                    groupId = mCategories.get(i).getId();
+                }
+            }
+
+            contact.setCategoryId(groupId);
+            presenter.actionAddContact(contact);
+        }
+    }
+
+    @Override
+    public void addContact(long id) {
+        if (id>0){
+            Toast.makeText(AddContactActivity.this,"Contact Created Successfully.",Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(AddContactActivity.this,"Sorry! Fail to create contact",Toast.LENGTH_SHORT).show();
         }
     }
 }
