@@ -8,74 +8,142 @@
     android:padding="15dp"
     tools:context=".ui.AddContact.AddContactActivity">
 
-    <EditText
-        android:id="@+id/edit_text_name"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Contact Name"
-        />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/edit_text_number"
-        android:layout_below="@+id/edit_text_name"
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Contact Number"
-        android:inputType="phone"
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/edit_text_email"
-        android:layout_below="@+id/edit_text_number"
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Contact Email (Optional)"
-        />
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view_select_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="2dp"
+                >
 
-    <Spinner
-        android:id="@+id/spinner_groups"
-        android:layout_below="@+id/edit_text_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="5dp"
+                    >
 
-    </Spinner>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Please Select an Avatar"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorAccent"
+                        android:gravity="center_horizontal"
+                        android:padding="5dp"
+                        android:background="@color/colorPrimaryDark"
+                        />
 
-    <RadioGroup
-        android:id="@+id/radio_group_gender"
-        android:layout_below="@+id/spinner_groups"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        >
+                    <RadioGroup
+                        android:id="@+id/radio_group_gender"
+                        android:layout_below="@+id/spinner_groups"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        >
 
-        <RadioButton
-            android:id="@+id/radio_button_male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@drawable/selector_gender_male"
-            />
+                        <RadioButton
+                            android:id="@+id/radio_button_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/selector_gender_male"
+                            />
 
-        <RadioButton
-            android:id="@+id/radio_button_female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:button="@drawable/selector_gender_female"
-            />
-    </RadioGroup>
+                        <RadioButton
+                            android:id="@+id/radio_button_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:button="@drawable/selector_gender_female"
+                            />
+                    </RadioGroup>
 
-    <Button
-        android:id="@+id/button_add_contact"
-        android:layout_below="@+id/radio_group_gender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Contact"
-        android:layout_marginTop="10dp"
-        />
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <EditText
+                android:id="@+id/edit_text_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contact Name"
+                android:background="@drawable/shape_round_corner"
+                android:padding="10dp"
+                android:layout_below="@+id/card_view_select_gender"
+                android:layout_marginTop="8dp"
+                android:textCursorDrawable="@color/colorDark"
+                />
+
+            <EditText
+                android:id="@+id/edit_text_number"
+                android:layout_below="@+id/edit_text_name"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contact Number"
+                android:inputType="phone"
+                android:background="@drawable/shape_round_corner"
+                android:padding="10dp"
+                android:textCursorDrawable="@color/colorDark"
+                />
+
+            <EditText
+                android:id="@+id/edit_text_email"
+                android:layout_below="@+id/edit_text_number"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contact Email (Optional)"
+                android:background="@drawable/shape_round_corner"
+                android:padding="10dp"
+                android:textCursorDrawable="@color/colorDark"
+                />
+
+            <TextView
+                android:id="@+id/text_view_choose_group"
+                android:layout_below="@+id/edit_text_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose a group: "
+                android:layout_marginTop="5dp"
+                android:textSize="20sp"
+                android:textColor="@color/colorDark"
+                />
+
+            <Spinner
+                android:id="@+id/spinner_groups"
+                android:layout_below="@+id/edit_text_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/text_view_choose_group"
+                android:layout_alignParentRight="true"
+                >
+
+            </Spinner>
+
+            <Button
+                android:id="@+id/button_add_contact"
+                android:layout_below="@+id/spinner_groups"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Contact"
+                android:textColor="@color/colorAccent"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_round_button"
+                />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

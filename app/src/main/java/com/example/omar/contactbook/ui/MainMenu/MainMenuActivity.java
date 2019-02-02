@@ -53,6 +53,9 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuMvpVi
                 final AlertDialog dialog = mBuilder.create();
                 dialog.show();
 
+                //Prevent Android activity Dialog from closing on outside touch
+                dialog.setCanceledOnTouchOutside(false);
+
                 buttonAddGroupName.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -71,14 +74,17 @@ public class MainMenuActivity extends AppCompatActivity implements MainMenuMvpVi
                 buttonExitAddGroupDialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        presenter.actionGetAllCategory();
-                        //dialog.dismiss();
+                        dialog.dismiss();
                     }
                 });
 
             }
         });
 
+        /**
+         * All Group List
+         * invoking all group list activity
+         */
         cardViewGroups.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
