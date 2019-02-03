@@ -22,7 +22,8 @@
         <activity android:name=".ui.MainMenu.MainMenuActivity" />
         <activity android:name=".ui.CategorySetting.CategorySettingActivity" />
         <activity android:name=".ui.AddContact.AddContactActivity" />
-        <activity android:name=".ui.Contact.ContactActivity"></activity>
+        <activity android:name=".ui.Contact.ContactActivity" />
+        <activity android:name=".ui.ContactDetails.ContactDetailsActivity"></activity>
     </application>
 
 </manifest>

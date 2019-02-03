@@ -1,6 +1,7 @@
 package com.example.omar.contactbook.ui.Contact;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import com.example.omar.contactbook.R;
 import com.example.omar.contactbook.data.Models.Category;
 import com.example.omar.contactbook.data.Models.Contact;
 import com.example.omar.contactbook.ui.Category.CategoryAdapter;
+import com.example.omar.contactbook.ui.ContactDetails.ContactDetailsActivity;
 
 import java.util.List;
 
@@ -43,6 +45,17 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.Recycler
         }else {
             recyclerViewHolder.imageViewContactGenderAvatar.setImageResource(R.drawable.icon_male_user);
         }
+
+        final Contact contact = contacts.get(i);
+
+        recyclerViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,ContactDetailsActivity.class);
+                intent.putExtra("CONTACT",contact);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
