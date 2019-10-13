@@ -2,9 +2,11 @@ package com.example.omar.contactbook.ui.ContactDetails;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,7 +40,7 @@ public class ContactDetailsActivity extends Activity implements ContactDetailsMv
         ContactDetailsPresenter presenter  = new ContactDetailsPresenter(ContactDetailsActivity.this,this);
 
         Intent intent = getIntent();
-        Contact contact = (Contact) intent.getSerializableExtra("CONTACT");
+        final Contact contact = (Contact) intent.getSerializableExtra("CONTACT");
 
         // set contact name
         collapsingToolbarLayout.setTitle(contact.getContactName());
@@ -48,6 +50,16 @@ public class ContactDetailsActivity extends Activity implements ContactDetailsMv
 
         //set group name
         presenter.actionGetCategoryName(contact.getCategoryId());
+
+        //make call
+        imageViewCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:"+contact.getContactNumber()));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

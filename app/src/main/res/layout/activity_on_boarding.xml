@@ -4,22 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.OnBoarding.OnBoardingActivity">
+    tools:context=".ui.OnBoarding.OnBoardingActivity"
+    >
 
-    <Button
-        android:id="@+id/button_main_menu"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager_on_boarding"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Go to main menu"
-        />
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:weightSum="3"
+        android:gravity="center"
+        android:padding="13dp"
+        android:background="@color/colorPrimaryDark"
+        >
 
-    <Button
-        android:id="@+id/button_add_contact"
-        android:layout_below="@+id/button_main_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Contact"
-        android:layout_marginTop="10dp"
-        />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/ic_action_slide_back"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Skip"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:src="@drawable/ic_action_slide_next"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>

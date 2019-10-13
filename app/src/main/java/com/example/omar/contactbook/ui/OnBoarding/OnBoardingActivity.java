@@ -1,40 +1,32 @@
 package com.example.omar.contactbook.ui.OnBoarding;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v4.view.ViewPager;
+import android.view.Window;
 import android.widget.Button;
 
 import com.example.omar.contactbook.R;
-import com.example.omar.contactbook.ui.AddContact.AddContactActivity;
-import com.example.omar.contactbook.ui.MainMenu.MainMenuActivity;
 
-public class OnBoardingActivity extends AppCompatActivity {
-    Button btnMainMenu, buttonAddContact;
+public class OnBoardingActivity extends Activity {
+
+    private OnBoardAdapter onBoardAdapter;
+    private ViewPager viewPagerOnBoarding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Remove title bar
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_on_boarding);
 
-        btnMainMenu = findViewById(R.id.button_main_menu);
-        buttonAddContact = findViewById(R.id.button_add_contact);
+        viewPagerOnBoarding = findViewById(R.id.view_pager_on_boarding);
+        onBoardAdapter = new OnBoardAdapter(this);
 
-        btnMainMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OnBoardingActivity.this,MainMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+        viewPagerOnBoarding.setAdapter(onBoardAdapter);
 
-        buttonAddContact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OnBoardingActivity.this, AddContactActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
+
 }

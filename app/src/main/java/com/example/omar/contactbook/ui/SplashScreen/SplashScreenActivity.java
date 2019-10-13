@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.omar.contactbook.R;
+import com.example.omar.contactbook.ui.MainMenu.MainMenuActivity;
 import com.example.omar.contactbook.ui.OnBoarding.OnBoardingActivity;
 
 import java.util.Timer;
@@ -54,7 +55,8 @@ public class SplashScreenActivity extends Activity implements SplashScreenMvpVie
         imageViewPhoneIcon.startAnimation(animSliderInTop);
         textViewWelcome.startAnimation(animSliderInBottom);
 
-        final Intent onBoardingActivity = new Intent(this,OnBoardingActivity.class);
+        //final Intent onBoardingActivity = new Intent(this,OnBoardingActivity.class);
+        final Intent onBoardingActivity = new Intent(this,MainMenuActivity.class);
 
         new Timer().schedule(new TimerTask(){
             public void run() {
